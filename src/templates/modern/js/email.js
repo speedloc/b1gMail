@@ -475,7 +475,7 @@ function initEMailTextArea(code)
 	{
 		if(!iframe) return null;
 
-		// Firefox-safe: srcdoc bevorzugen (kein about:blank load-race)
+		// Firefox-safe: prefer srcdoc (no about:blank load-race)
 		if('srcdoc' in iframe)
 		{
 			try { iframe.srcdoc = code; } catch(e) {}
@@ -576,7 +576,7 @@ function initEMailTextArea(code)
 		resCB();
 	};
 
-	// alte WebKit/Opera-Logik behalten, aber immer cb einmal triggern
+	// webkit seems not to support addEvent(load), so emulate it
 	if(/WebKit/i.test(navigator.userAgent) || /Opera/i.test(navigator.userAgent))
 	{
 		var _isLoaded = false;
